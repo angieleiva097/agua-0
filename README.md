@@ -1,57 +1,11 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+# Agua 0 - Fundamentos de la Web Artesanal
 
-body {
-  font-family: 'Georgia', serif;
-  line-height: 1.8;
-  color: #222222;
-  background-color: #fcfcfc;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
+Repositorio del ejercicio paso 0 sobre la estructura básica de documentos en HTML y hojas de estilo CSS para edición digital.
 
-.encabezado {
-  text-align: center;
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #e0e0e0;
-}
+## Sitio publicado
+Puedes ver la página web en vivo aquí:
+* [Página Agua 0 en GitHub Pages](https://angieleiva097.github.io/agua-0/)
 
-h1 {
-  font-size: 2.2rem;
-  font-weight: normal;
-  color: #111111;
-  margin-bottom: 10px;
-}
-
-.subtitulo {
-  font-style: italic;
-  color: #666666;
-  font-size: 1.1rem;
-}
-
-h2 {
-  font-size: 1.4rem;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  color: #222222;
-}
-
-p {
-  margin-bottom: 18px;
-  font-size: 1.05rem;
-  text-align: justify;
-}
-
-footer {
-  margin-top: 60px;
-  padding-top: 20px;
-  border-top: 1px solid #e0e0e0;
-  font-size: 0.85rem;
-  color: #888888;
-  text-align: center;
-}
+## Estructura del proyecto
+* `index.html`: Estructura del documento y contenido pedagógico sobre código web.
+* `style.css`: Estilos visuales y maquetación de lectura.
