@@ -5,44 +5,49 @@
 }
 
 body {
-  background-color: #8c82b6; /* Fondo lila/púrpura idéntico al de la plantilla */
-  font-family: 'Impact', 'Arial Black', sans-serif;
+  background-color: #9283c4; /* Fondo lila retro de la plantilla original */
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-}
-
-.marquesina-portada {
-  text-align: center;
-  width: 100%;
   padding: 20px;
 }
 
-.letras-3d {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  line-height: 0.9;
-  text-transform: uppercase;
+.portada-estrambotica {
+  text-align: center;
+  width: 100%;
 }
 
-.letras-3d span {
-  font-size: clamp(4.5rem, 16vw, 11rem);
-  font-weight: 900;
-  letter-spacing: 2px;
-  
-  /* Color del texto con degradado rosa a violeta */
-  background: linear-gradient(180deg, #ff80df 0%, #a64dff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.titulo-gigante {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
 
-  /* Borde negro grueso y sombra tridimensional rígida */
-  filter: drop-shadow(4px 4px 0px #000000)
-          drop-shadow(-2px -2px 0px #000000)
-          drop-shadow(2px -2px 0px #000000)
-          drop-shadow(-2px 2px 0px #000000)
-          drop-shadow(8px 12px 0px rgba(0, 0, 0, 0.8));
+.titulo-gigante span {
+  font-family: 'Press Start 2P', cursive, monospace; /* Tipografía estrambótica pixel 3D */
+  font-size: clamp(2rem, 6.5vw, 5.5rem);
+  text-transform: uppercase;
+  color: #ff52d9; /* Rosa neón */
+  
+  /* Borde negro grueso estrambótico y sombra 3D rígida en bloques */
+  text-shadow: 
+    4px 4px 0px #000,
+    -4px -4px 0px #000,
+    4px -4px 0px #000,
+    -4px 4px 0px #000,
+    8px 8px 0px #00ffff, /* Sombra cian neón */
+    12px 12px 0px #000;
+    
+  letter-spacing: -1px;
+  line-height: 1.1;
+  transform: rotate(-2deg); /* Un toque ligeramente inclinado y estrambótico */
+}
+
+.titulo-gigante span:nth-child(even) {
+  color: #ffee00; /* Alterna líneas con amarillo neón */
+  transform: rotate(2deg);
 }
