@@ -5,50 +5,44 @@
 }
 
 body {
-  font-family: 'Times New Roman', Times, serif;
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #8c82b6; /* Fondo lila/púrpura idéntico al de la plantilla */
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  overflow: hidden;
+}
+
+.marquesina-portada {
+  text-align: center;
+  width: 100%;
   padding: 20px;
 }
 
-.portada {
-  text-align: center;
-  max-width: 650px;
-  width: 100%;
-}
-
-.meta-info {
-  font-family: monospace;
-  font-size: 0.85rem;
-  letter-spacing: 3px;
-  color: #666666;
-  margin-bottom: 25px;
+.letras-3d {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 0.9;
   text-transform: uppercase;
 }
 
-.titulo-principal {
-  font-size: 3rem;
-  font-weight: normal;
+.letras-3d span {
+  font-size: clamp(4.5rem, 16vw, 11rem);
+  font-weight: 900;
   letter-spacing: 2px;
-  margin-bottom: 15px;
-  color: #000000;
-  text-transform: uppercase;
-}
+  
+  /* Color del texto con degradado rosa a violeta */
+  background: linear-gradient(180deg, #ff80df 0%, #a64dff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-.subtitulo {
-  font-style: italic;
-  font-size: 1.2rem;
-  color: #444444;
-  margin-bottom: 30px;
-}
-
-.linea-decorativa {
-  width: 80px;
-  height: 2px;
-  background-color: #000000;
-  margin: 0 auto;
+  /* Borde negro grueso y sombra tridimensional rígida */
+  filter: drop-shadow(4px 4px 0px #000000)
+          drop-shadow(-2px -2px 0px #000000)
+          drop-shadow(2px -2px 0px #000000)
+          drop-shadow(-2px 2px 0px #000000)
+          drop-shadow(8px 12px 0px rgba(0, 0, 0, 0.8));
 }
