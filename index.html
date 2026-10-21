@@ -3,295 +3,360 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>El Tribunal de las Ideas</title>
+<meta name="theme-color" content="#15110d">
+<title>El Tribunal de la Historia | Colombia</title>
 <style>
 :root {
-  --fondo: #100f0e;
-  --panel: #1d1a17;
-  --oro: #d5b477;
-  --texto: #f4eee5;
-  --suave: #c1b6a7;
+  --bg:#100e0c;
+  --panel:#1c1814;
+  --gold:#d7b477;
+  --gold2:#a8844d;
+  --text:#f3eadc;
+  --muted:#c2b5a1;
+  --line:#59452d;
 }
-* { box-sizing: border-box; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
-  margin: 0;
-  background: var(--fondo);
-  color: var(--texto);
-  font-family: Georgia, serif;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Georgia,"Times New Roman",serif;
+  line-height:1.55;
 }
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 7%;
-  border-bottom: 1px solid #55452f;
-  background: #0b0a09;
-  gap: 16px;
+a { color:inherit; text-decoration:none; }
+button,select,textarea { font:inherit; }
+button { cursor:pointer; }
+.topbar {
+  position:sticky; top:0; z-index:10;
+  display:flex; justify-content:space-between;
+  align-items:center; gap:20px;
+  padding:15px 5%;
+  background:#0b0908ed;
+  border-bottom:1px solid var(--line);
 }
-.logo { color: var(--oro); font-size: 20px; }
-header small { color: var(--suave); }
-nav { display: flex; gap: 18px; flex-wrap: wrap; }
-a { color: inherit; text-decoration: none; }
-nav a:hover { color: var(--oro); }
+.brand { display:flex; align-items:center; gap:13px; color:var(--gold); }
+.brand-mark { font-size:32px; }
+.brand strong { display:block; font-size:clamp(15px,2vw,22px); }
+.brand small { display:block; color:var(--muted); font-size:12px; }
+nav { display:flex; gap:20px; flex-wrap:wrap; font-size:14px; }
+nav a:hover { color:var(--gold); }
 .hero {
-  text-align: center;
-  padding: 85px 20px 65px;
+  min-height:520px;
+  display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:70px 20px;
   background:
-    linear-gradient(#100f0ed9,#100f0ef5),
-    url("https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1800&q=85")
-    center 45% / cover;
-  border-bottom: 1px solid #55452f;
+    linear-gradient(#100e0c99,#100e0cf0),
+    radial-gradient(ellipse at 50% 28%,#70502b,#302116 45%,#100e0c 80%);
+  border-bottom:1px solid var(--line);
 }
-.sello { color: var(--oro); font-size: 40px; }
-.etiqueta {
-  color: var(--oro);
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 11px;
+.hero-inner { max-width:900px; }
+.justice { font-size:56px; color:var(--gold); }
+.kicker {
+  font-size:11px; letter-spacing:3px;
+  text-transform:uppercase; color:var(--gold);
 }
-h1 { font-size: clamp(34px, 6vw, 62px); margin: 18px 0; }
-.hero p { color: var(--suave); line-height: 1.8; }
-button {
-  background: var(--oro);
-  color: #17120b;
-  border: 1px solid var(--oro);
-  border-radius: 4px;
-  padding: 13px 19px;
-  font: bold 14px Georgia, serif;
-  cursor: pointer;
+h1 {
+  font-size:clamp(38px,6vw,70px);
+  line-height:1.08; font-weight:normal; margin:20px 0;
 }
-button:hover { background: #f0d5a1; }
-.secundario {
-  background: transparent;
-  color: var(--oro);
+.hero p { max-width:680px; margin:0 auto 28px; color:#d2c5b2; font-size:18px; }
+.actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+.btn {
+  display:inline-block; padding:12px 19px;
+  border:1px solid var(--gold); border-radius:3px;
+  background:var(--gold); color:#19120a;
+  font-weight:bold; font-size:13px;
 }
-.contenedor { max-width: 1100px; margin: auto; padding: 45px 22px; }
-.titulo {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
+.btn:hover { background:#edd3a2; }
+.btn.ghost { background:transparent; color:var(--gold); }
+.wrap { width:min(1180px,92%); margin:auto; padding:52px 0; }
+.section-head { text-align:center; margin-bottom:30px; }
+.section-head p { color:var(--muted); max-width:720px; margin:auto; }
+h2 { font-size:clamp(25px,3vw,36px); font-weight:normal; margin:8px 0 10px; }
+.bench-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.bench {
+  padding:24px; border:1px solid var(--line);
+  background:linear-gradient(140deg,#211b15,#15120f);
 }
-h2 { color: var(--oro); font-size: 27px; }
-.casos {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 18px;
+.bench.liberal { border-top:3px solid #647f91; }
+.bench.conservador { border-top:3px solid #a87952; }
+.bench-title { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+.bench-symbol { font-size:28px; color:var(--gold); }
+.bench h3 { margin:0; font-size:24px; font-weight:normal; }
+.bench-title p { color:var(--muted); font-size:13px; margin:3px 0; }
+.people { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.person {
+  padding:14px 11px; background:#100e0c;
+  border:1px solid #443626; min-height:145px;
+  display:flex; flex-direction:column; align-items:flex-start;
 }
-.caso {
-  border: 1px solid #4d3f2d;
-  background: var(--panel);
-  padding: 23px;
-  border-radius: 7px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  min-height: 265px;
+.person .initial { font-size:24px; color:var(--gold); margin-bottom:8px; }
+.person strong { font-size:14px; line-height:1.4; }
+.person small { color:var(--muted); font-size:12px; margin-top:7px; }
+.person button {
+  margin-top:auto; padding:10px 0 0;
+  background:none; border:0; color:var(--gold); font-size:12px;
 }
-.caso h3 { font-size: 22px; line-height: 1.4; }
-.caso p { color: var(--suave); line-height: 1.7; flex: 1; }
-.caso button { width: 100%; }
-.numero { color: var(--oro); font-size: 12px; }
-.como {
-  border-top: 1px solid #4d3f2d;
-  border-bottom: 1px solid #4d3f2d;
-  background: #171411;
+.case-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:17px; }
+.case {
+  background:var(--panel); border:1px solid var(--line);
+  padding:22px; display:flex; flex-direction:column;
+  align-items:flex-start; min-height:250px;
 }
-.pasos {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 22px;
+.case .num { font-size:11px; letter-spacing:2px; color:var(--gold); }
+.case h3 { font-size:22px; line-height:1.3; font-weight:normal; }
+.case p { color:var(--muted); font-size:14px; flex:1; }
+.case button {
+  background:transparent; color:var(--gold);
+  border:0; border-bottom:1px solid var(--gold2); padding:0 0 4px;
 }
-.paso { padding: 12px 0; }
-.paso strong { color: var(--oro); }
-.paso p { color: var(--suave); line-height: 1.7; }
-footer {
-  padding: 30px 20px;
-  text-align: center;
-  color: var(--suave);
-  font-size: 13px;
+.note { font-size:12px; color:var(--muted); text-align:center; margin-top:20px; }
+.info-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.info-card { padding:22px; border:1px solid var(--line); background:var(--panel); }
+.info-card h3 { color:var(--gold); font-weight:normal; }
+.info-card p { color:var(--muted); font-size:14px; }
+footer { border-top:1px solid var(--line); padding:30px 20px; text-align:center; color:var(--muted); font-size:13px; }
+.modal {
+  display:none; position:fixed; z-index:20; inset:0;
+  overflow:auto; background:#000b; padding:24px;
 }
-#debate {
-  display: none;
-  max-width: 760px;
-  margin: 25px auto;
-  padding: 25px;
-  background: var(--panel);
-  border: 1px solid #665237;
-  border-radius: 8px;
+.modal.open { display:flex; align-items:center; justify-content:center; }
+.dialog {
+  width:min(720px,100%); background:#191511;
+  border:1px solid var(--gold2); padding:30px;
+  position:relative; max-height:92vh; overflow:auto;
 }
-#debate select, #debate textarea {
-  width: 100%;
-  margin: 10px 0 18px;
-  padding: 12px;
-  background: #100f0e;
-  border: 1px solid #665237;
-  color: white;
-  font: inherit;
+.close {
+  position:absolute; right:15px; top:10px;
+  background:none; border:0; color:var(--gold); font-size:27px;
 }
-#debate textarea { min-height: 110px; }
-#resultado { line-height: 1.7; overflow-wrap: anywhere; }
-@media(max-width:750px) {
-  header { align-items: flex-start; flex-direction: column; }
-  .casos, .pasos { grid-template-columns: 1fr; }
-  .hero { padding: 60px 18px; }
-  .caso { min-height: 220px; }
+.meta { font-size:11px; letter-spacing:2px; color:var(--gold2); }
+.dialog h2 { color:var(--gold); }
+.dialog p { color:var(--muted); }
+label { display:block; margin:16px 0 6px; color:var(--gold); }
+select,textarea {
+  width:100%; background:#0f0d0b; color:var(--text);
+  border:1px solid #695236; padding:12px;
+}
+textarea { min-height:120px; resize:vertical; }
+.feedback {
+  margin-top:18px; padding:15px; border-left:3px solid var(--gold);
+  background:#0e0c0a; white-space:pre-wrap; overflow-wrap:anywhere;
+}
+@media(max-width:800px) {
+  .topbar { align-items:flex-start; flex-direction:column; }
+  nav { gap:12px; }
+  .people,.bench-grid,.case-list,.info-grid { grid-template-columns:1fr; }
+  .hero { min-height:460px; }
+  .wrap { padding:38px 0; }
+  .dialog { padding:22px; }
 }
 </style>
 </head>
 <body>
 
-<header>
-  <div>
-    <div class="logo">⚖ EL TRIBUNAL DE LAS IDEAS</div>
-    <small>Donde las ideas se enfrentan</small>
-  </div>
+<header class="topbar">
+  <a class="brand" href="#inicio">
+    <span class="brand-mark">⚖</span>
+    <span>
+      <strong>EL TRIBUNAL DE LA HISTORIA</strong>
+      <small>La memoria entra en juicio</small>
+    </span>
+  </a>
   <nav>
     <a href="#inicio">Inicio</a>
-    <a href="#casos">Casos</a>
-    <a href="#como">Cómo funciona</a>
+    <a href="#bancadas">Bancadas</a>
+    <a href="#expedientes">Expedientes</a>
+    <a href="#biblioteca">Biblioteca</a>
+    <a href="#metodo">Método</a>
   </nav>
 </header>
 
 <section class="hero" id="inicio">
-  <div class="sello">⚖</div>
-  <div class="etiqueta">El conocimiento entra en juicio</div>
-  <h1>Que hablen las ideas.<br>Que respondan los argumentos.</h1>
-  <p>
-    Un tribunal donde ninguna creencia está exenta de preguntas<br>
-    y ninguna conclusión está por encima del pensamiento crítico.
-  </p>
-  <a href="#casos"><button>Explorar casos abiertos →</button></a>
-</section>
-
-<main>
-<section class="contenedor" id="casos">
-  <div class="titulo">
-    <div>
-      <div class="etiqueta">Expedientes abiertos</div>
-      <h2>Elige qué idea quieres poner a prueba</h2>
-    </div>
-    <span style="color:#c1b6a7">Tu juicio comienza aquí.</span>
-  </div>
-
-  <div class="casos">
-    <article class="caso">
-      <span class="numero">EXPEDIENTE N.º 001 · FILOSOFÍA</span>
-      <h3>¿La moral necesita a Dios?</h3>
-      <p>¿Podemos distinguir el bien del mal sin recurrir a una autoridad divina?</p>
-      <button onclick="abrir(0)">Entrar al debate →</button>
-    </article>
-    <article class="caso">
-      <span class="numero">EXPEDIENTE N.º 002 · LIBERTAD</span>
-      <h3>¿Somos realmente libres?</h3>
-      <p>¿Elegimos nuestro destino o nuestras decisiones están condicionadas?</p>
-      <button onclick="abrir(1)">Entrar al debate →</button>
-    </article>
-    <article class="caso">
-      <span class="numero">EXPEDIENTE N.º 003 · SOCIEDAD</span>
-      <h3>¿Debe existir la censura?</h3>
-      <p>¿Hay ideas que deben prohibirse o la libertad de expresión debe prevalecer?</p>
-      <button onclick="abrir(2)">Entrar al debate →</button>
-    </article>
-  </div>
-
-  <section id="debate">
-    <div class="etiqueta" id="expediente"></div>
-    <h2 id="pregunta"></h2>
-    <p id="descripcion" style="color:#c1b6a7"></p>
-    <label for="rol">Elige tu papel en el juicio</label>
-    <select id="rol">
-      <option value="Opositor">Opositor: cuestiona la idea</option>
-      <option value="Defensor">Defensor: sostiene la idea</option>
-      <option value="Jurado">Jurado: examina ambos argumentos</option>
-    </select>
-    <label for="argumento">Tu primera intervención</label>
-    <textarea id="argumento" placeholder="Expón tus razones, plantea una objeción o formula una pregunta..."></textarea>
-    <button onclick="enviar()">Presentar intervención</button>
-    <button class="secundario" onclick="cerrar()">Cerrar expediente</button>
-    <div id="resultado"></div>
-  </section>
-</section>
-
-<section class="como" id="como">
-  <div class="contenedor">
-    <div class="etiqueta">El procedimiento</div>
-    <h2>¿Cómo funciona el tribunal?</h2>
-    <div class="pasos">
-      <div class="paso">
-        <strong>01 — Abre el expediente</strong>
-        <p>Escoge una pregunta que desafíe tus convicciones y despierte tu curiosidad.</p>
-      </div>
-      <div class="paso">
-        <strong>02 — Asume un papel</strong>
-        <p>Defiende una postura, cuestiona sus fundamentos o evalúa las razones de ambas partes.</p>
-      </div>
-      <div class="paso">
-        <strong>03 — Examina las pruebas</strong>
-        <p>Contrasta argumentos, consulta fuentes y construye una conclusión razonada.</p>
-      </div>
+  <div class="hero-inner">
+    <div class="justice">⚖</div>
+    <div class="kicker">Juzgado histórico · Colombia</div>
+    <h1>La historia declara.<br>Las pruebas responden.</h1>
+    <p>Un tribunal virtual de sátira política e investigación histórica para examinar personajes, decisiones, discursos y controversias de la Colombia del siglo XX.</p>
+    <div class="actions">
+      <a class="btn" href="#bancadas">ENTRAR AL TRIBUNAL →</a>
+      <a class="btn ghost" href="#expedientes">Explorar expedientes</a>
     </div>
   </div>
 </section>
-</main>
+
+<section class="wrap" id="bancadas">
+  <div class="section-head">
+    <div class="kicker">La sala está dividida</div>
+    <h2>Las dos bancadas</h2>
+    <p>Selecciona un personaje para abrir su ficha inicial. Las trayectorias y controversias deben examinarse con contexto histórico y fuentes verificables.</p>
+  </div>
+
+  <div class="bench-grid">
+    <section class="bench liberal">
+      <div class="bench-title">
+        <span class="bench-symbol">◈</span>
+        <div><h3>Bancada liberal</h3><p>Personajes asociados al liberalismo colombiano</p></div>
+      </div>
+      <div class="people">
+        <article class="person">
+          <span class="initial">JG</span><strong>Jorge Eliécer Gaitán</strong>
+          <small>Político y líder liberal</small>
+          <button onclick="abrirPersona('Jorge Eliécer Gaitán','Su trayectoria política, sus discursos y su papel en la historia colombiana serán examinados mediante fuentes verificables.')">Abrir ficha →</button>
+        </article>
+        <article class="person">
+          <span class="initial">LG</span><strong>Luis Carlos Galán Sarmiento</strong>
+          <small>Político y dirigente liberal</small>
+          <button onclick="abrirPersona('Luis Carlos Galán Sarmiento','Investigar su trayectoria, sus propuestas, su movimiento político y el contexto de su asesinato mediante fuentes históricas.')">Abrir ficha →</button>
+        </article>
+        <article class="person">
+          <span class="initial">ES</span><strong>Ernesto Samper Pizano</strong>
+          <small>Presidente de Colombia, 1994–1998</small>
+          <button onclick="abrirPersona('Ernesto Samper Pizano','Examinar su gobierno y la controversia del proceso 8.000 distinguiendo hechos judiciales, denuncias, versiones y análisis.')">Abrir ficha →</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="bench conservador">
+      <div class="bench-title">
+        <span class="bench-symbol">◉</span>
+        <div><h3>Bancada conservadora</h3><p>Personajes asociados al conservatismo colombiano</p></div>
+      </div>
+      <div class="people">
+        <article class="person">
+          <span class="initial">MP</span><strong>Misael Pastrana Borrero</strong>
+          <small>Presidente de Colombia, 1970–1974</small>
+          <button onclick="abrirPersona('Misael Pastrana Borrero','Examinar su presidencia, el contexto de las elecciones de 1970 y las controversias históricas con fuentes contrastadas.')">Abrir ficha →</button>
+        </article>
+        <article class="person">
+          <span class="initial">AP</span><strong>Andrés Pastrana Arango</strong>
+          <small>Presidente de Colombia, 1998–2002</small>
+          <button onclick="abrirPersona('Andrés Pastrana Arango','Investigar su trayectoria, el proceso de paz con las FARC y las decisiones de su gobierno con contexto y fuentes.')">Abrir ficha →</button>
+        </article>
+        <article class="person">
+          <span class="initial">BB</span><strong>Belisario Betancur</strong>
+          <small>Presidente de Colombia, 1982–1986</small>
+          <button onclick="abrirPersona('Belisario Betancur','Examinar su gobierno, los diálogos de paz y los hechos relacionados con el Palacio de Justicia, con rigor documental.')">Abrir ficha →</button>
+        </article>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section class="wrap" id="expedientes">
+  <div class="section-head">
+    <div class="kicker">Casos por investigar</div>
+    <h2>Expedientes abiertos</h2>
+    <p>La sátira puede ser incisiva; las pruebas, las citas y las acusaciones deben ser verificables.</p>
+  </div>
+  <div class="case-list">
+    <article class="case">
+      <div class="num">EXPEDIENTE 001 · ELECCIONES</div>
+      <h3>¿Qué ocurrió en las elecciones de 1970?</h3>
+      <p>Contrastar resultados oficiales, testimonios, análisis académicos y memorias sobre una elección decisiva.</p>
+      <button onclick="abrirCaso('¿Qué ocurrió en las elecciones de 1970?','Contrasta fuentes oficiales, testimonios y estudios históricos. No conviertas una interpretación en hecho probado.')">Examinar expediente →</button>
+    </article>
+    <article class="case">
+      <div class="num">EXPEDIENTE 002 · PODER</div>
+      <h3>¿Cómo se investiga el poder presidencial?</h3>
+      <p>Examinar responsabilidades, controles institucionales, versiones públicas y límites de la evidencia.</p>
+      <button onclick="abrirCaso('¿Cómo se investiga el poder presidencial?','Revisa documentos oficiales, investigaciones periodísticas y decisiones judiciales. Distingue acusación, prueba y conclusión.')">Examinar expediente →</button>
+    </article>
+    <article class="case">
+      <div class="num">EXPEDIENTE 003 · MEMORIA</div>
+      <h3>¿Quién escribe la memoria de un país?</h3>
+      <p>Comparar discursos, archivos, prensa y relatos posteriores para estudiar cómo se construye la memoria pública.</p>
+      <button onclick="abrirCaso('¿Quién escribe la memoria de un país?','Compara fuentes primarias y análisis posteriores. Pregunta quién habla, desde qué posición y con qué evidencia.')">Examinar expediente →</button>
+    </article>
+  </div>
+  <p class="note">Estos expedientes son propuestas de investigación, no conclusiones judiciales ni acusaciones de culpabilidad.</p>
+</section>
+
+<section class="wrap" id="biblioteca">
+  <div class="section-head">
+    <div class="kicker">Archivo y pruebas</div>
+    <h2>La biblioteca del tribunal</h2>
+    <p>Las referencias bibliográficas se deben verificar individualmente antes de publicarse como catálogo definitivo.</p>
+  </div>
+  <div class="info-grid">
+    <article class="info-card"><h3>Fuentes primarias</h3><p>Discursos, documentos oficiales, archivos, programas políticos y registros de época.</p></article>
+    <article class="info-card"><h3>Investigación histórica</h3><p>Libros, artículos académicos y trabajos periodísticos contrastados, con datos editoriales comprobables.</p></article>
+    <article class="info-card"><h3>Prueba en contexto</h3><p>Las citas deben acompañarse de fecha, procedencia, contexto y enlace verificable cuando esté disponible.</p></article>
+  </div>
+</section>
+
+<section class="wrap" id="metodo">
+  <div class="section-head">
+    <div class="kicker">Reglas de la sala</div>
+    <h2>La sátira no reemplaza las pruebas</h2>
+  </div>
+  <div class="info-grid">
+    <article class="info-card"><h3>01 · Documentar</h3><p>No inventar citas, cifras, libros, enlaces ni acontecimientos.</p></article>
+    <article class="info-card"><h3>02 · Contrastar</h3><p>Distinguir hechos documentados, denuncias, interpretaciones y opiniones.</p></article>
+    <article class="info-card"><h3>03 · Interrogar</h3><p>Hacer preguntas incisivas con criterios comparables para ambas bancadas.</p></article>
+  </div>
+</section>
 
 <footer>
-  EL TRIBUNAL DE LAS IDEAS · Pensar es atreverse a preguntar.
+  EL TRIBUNAL DE LA HISTORIA · Sátira política e investigación histórica colombiana.<br>
+  Las fichas y expedientes deben completarse con fuentes verificadas.
 </footer>
 
-<script>
-const casos = [
-  {
-    n: "EXPEDIENTE N.º 001",
-    p: "¿La moral necesita a Dios?",
-    d: "Defensor: sin Dios no existe un fundamento absoluto para distinguir el bien del mal. ¿Qué responderás?"
-  },
-  {
-    n: "EXPEDIENTE N.º 002",
-    p: "¿Somos realmente libres?",
-    d: "Defensor: nuestras decisiones están condicionadas por la biología, la sociedad y nuestra historia. ¿Somos libres?"
-  },
-  {
-    n: "EXPEDIENTE N.º 003",
-    p: "¿Debe existir la censura?",
-    d: "Defensor: algunas expresiones pueden causar daños graves. ¿Hay límites legítimos a la libertad de expresión?"
-  }
-];
-let actual = 0;
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="if(event.target===this)cerrarModal()">
+  <div class="dialog">
+    <button class="close" onclick="cerrarModal()" aria-label="Cerrar">×</button>
+    <div class="meta" id="modalMeta">EXPEDIENTE</div>
+    <h2 id="modalTitle"></h2>
+    <p id="modalDesc"></p>
+    <label for="papel">¿Cómo quieres participar?</label>
+    <select id="papel">
+      <option>Investigador/a</option>
+      <option>Interrogador/a</option>
+      <option>Jurado histórico</option>
+    </select>
+    <label for="nota">Tu pregunta inicial (opcional)</label>
+    <textarea id="nota" placeholder="¿Qué quieres averiguar, contrastar o poner en duda?"></textarea>
+    <button class="btn" onclick="iniciarInvestigacion()">Abrir sesión de investigación →</button>
+    <div class="feedback" id="modalFeedback" hidden></div>
+  </div>
+</div>
 
-function abrir(i) {
-  actual = i;
-  document.getElementById("expediente").textContent = casos[i].n;
-  document.getElementById("pregunta").textContent = casos[i].p;
-  document.getElementById("descripcion").textContent = casos[i].d;
-  document.getElementById("resultado").textContent = "";
-  document.getElementById("argumento").value = "";
-  document.getElementById("debate").style.display = "block";
-  document.getElementById("debate").scrollIntoView({behavior:"smooth"});
+<script>
+let temaActual = "";
+function mostrarModal(meta,titulo,descripcion) {
+  temaActual = titulo;
+  document.getElementById("modalMeta").textContent = meta;
+  document.getElementById("modalTitle").textContent = titulo;
+  document.getElementById("modalDesc").textContent = descripcion;
+  document.getElementById("nota").value = "";
+  document.getElementById("modalFeedback").hidden = true;
+  document.getElementById("modal").classList.add("open");
 }
-function enviar() {
-  const texto = document.getElementById("argumento").value.trim();
-  const rol = document.getElementById("rol").value;
-  if (!texto) {
-    alert("Escribe una intervención antes de continuar.");
-    return;
-  }
-  const bloque = document.createElement("div");
-  bloque.style.cssText = "margin-top:20px;padding:15px;border-left:3px solid #d5b477;background:#100f0e";
-  const titulo = document.createElement("strong");
-  titulo.textContent = rol + " — tu intervención";
-  const contenido = document.createElement("p");
-  contenido.textContent = texto;
-  bloque.append(titulo, contenido);
-  document.getElementById("resultado").append(bloque);
-  document.getElementById("argumento").value = "";
+function abrirPersona(nombre,descripcion) {
+  mostrarModal("FICHA DE PERSONAJE",nombre,descripcion);
 }
-function cerrar() {
-  document.getElementById("debate").style.display = "none";
-  document.getElementById("casos").scrollIntoView({behavior:"smooth"});
+function abrirCaso(titulo,descripcion) {
+  mostrarModal("EXPEDIENTE HISTÓRICO",titulo,descripcion);
 }
+function iniciarInvestigacion() {
+  const papel = document.getElementById("papel").value;
+  const nota = document.getElementById("nota").value.trim();
+  const box = document.getElementById("modalFeedback");
+  box.hidden = false;
+  box.textContent =
+    "Sesión preparada: " + temaActual +
+    "\nPapel: " + papel +
+    "\n\nPregunta inicial: " + (nota || "Pendiente de formular") +
+    "\n\nSiguiente paso: consultar fuentes verificables, registrar preguntas y contrastar interpretaciones." +
+    "\n\nEsta versión no guarda datos ni genera automáticamente una investigación.";
+}
+function cerrarModal() {
+  document.getElementById("modal").classList.remove("open");
+}
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") cerrarModal();
+});
 </script>
 </body>
 </html>
