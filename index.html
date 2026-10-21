@@ -1,25 +1,215 @@
+`html
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reflexiones sobre Chia Amisola</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <title>El Tribunal de las Ideas</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: #171412;
+      color: #f4eee4;
+    }
+
+    header {
+      padding: 20px;
+      background: #0c0b0a;
+      border-bottom: 1px solid #8c7047;
+      text-align: center;
+    }
+
+    header h1 {
+      color: #d8b77b;
+      margin: 0;
+    }
+
+    header p { color: #c8bba8; }
+
+    main {
+      width: min(1100px, 94%);
+      margin: 35px auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 22px;
+    }
+
+    section {
+      background: #211e1b;
+      border: 1px solid #54442e;
+      border-radius: 10px;
+      padding: 22px;
+    }
+
+    h2 { color: #e2c38b; }
+
+    .etiqueta {
+      color: #c6a66e;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .mensaje {
+      padding: 15px;
+      margin: 15px 0;
+      background: #302b26;
+      border-radius: 8px;
+      line-height: 1.6;
+    }
+
+    .defensor { border-left: 3px solid #a58c67; }
+    .opositor { border-left: 3px solid #d8b77b; }
+
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: 14px;
+      background: #100f0e;
+      color: white;
+      border: 1px solid #766344;
+      border-radius: 7px;
+      font: inherit;
+      resize: vertical;
+    }
+
+    button {
+      padding: 12px 18px;
+      background: #c9a66c;
+      color: #17120d;
+      border: 0;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover { background: #e4c58f; }
+
+    .acciones {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    #estado {
+      color: #c6a66e;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 700px) {
+      main { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <h1>⚖ El Tribunal de las Ideas</h1>
+    <p>Donde las ideas se enfrentan</p>
+  </header>
 
-  <div class="portada-estrambotica">
-    <h1 class="titulo-gigante">
-      <span>REFLEXIONES</span>
-      <span>SOBRE CHIA</span>
-      <span>AMISOLA Y LA</span>
-      <span>POÉTICA</span>
-      <span>DIGITAL</span>
-    </h1>
-  </div>
+  <main>
+    <section>
+      <span class="etiqueta">TU PAPEL</span>
+      <h2>Opositor</h2>
+      <p>Cuestiona, analiza y refuta.</p>
+      <p>
+        Tu misión es examinar los argumentos del defensor
+        y demostrar que la moral puede existir sin depender
+        necesariamente de Dios.
+      </p>
+      <hr>
+      <h3>Reglas del debate</h3>
+      <p>• Respeta las ideas contrarias.</p>
+      <p>• Argumenta con razones.</p>
+      <p>• Puedes cuestionar cualquier afirmación.</p>
+      <p>• Puedes cambiar de opinión.</p>
+    </section>
 
+    <section>
+      <span class="etiqueta">EXPEDIENTE N.º 001</span>
+      <h2>¿La moral necesita a Dios?</h2>
+      <p>
+        ¿Podemos distinguir el bien del mal sin recurrir
+        a la religión?
+      </p>
+
+      <div id="conversacion" aria-live="polite">
+        <div class="mensaje defensor">
+          <strong>Defensor de la idea</strong>
+          <p>
+            La moral necesita a Dios porque, sin una autoridad
+            superior, ¿qué fundamento objetivo tenemos para
+            distinguir el bien del mal?
+          </p>
+        </div>
+      </div>
+
+      <label for="respuesta">
+        <strong>Tu turno: presenta tu contraargumento</strong>
+      </label>
+      <br><br>
+
+      <textarea id="respuesta"
+        placeholder="Escribe tu argumento o formula una pregunta..."></textarea>
+
+      <div class="acciones">
+        <button id="enviar">Presentar argumento</button>
+        <button id="pregunta" type="button">Hacer una pregunta</button>
+      </div>
+
+      <p id="estado" role="status">
+        El debate está abierto. Esperamos tu intervención.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const respuesta = document.getElementById("respuesta");
+    const conversacion = document.getElementById("conversacion");
+    const estado = document.getElementById("estado");
+
+    function intervenir(tipo) {
+      const texto = respuesta.value.trim();
+
+      if (!texto) {
+        estado.textContent = "Escribe tu intervención antes de continuar.";
+        respuesta.focus();
+        return;
+      }
+
+      const mensaje = document.createElement("div");
+      mensaje.className = "mensaje opositor";
+
+      const autor = document.createElement("strong");
+      autor.textContent = tipo === "pregunta"
+        ? "Opositor — pregunta"
+        : "Opositor — argumento";
+
+      const contenido = document.createElement("p");
+      contenido.textContent = texto;
+
+      mensaje.append(autor, contenido);
+      conversacion.appendChild(mensaje);
+
+      respuesta.value = "";
+      estado.textContent =
+        "Tu intervención ha sido añadida al debate de esta sesión.";
+
+      respuesta.focus();
+    }
+
+    document.getElementById("enviar").addEventListener(
+      "click", () => intervenir("argumento")
+    );
+
+    document.getElementById("pregunta").addEventListener(
+      "click", () => intervenir("pregunta")
+    );
+  </script>
 </body>
 </html>
+```
