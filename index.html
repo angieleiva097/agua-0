@@ -1,214 +1,297 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>El Tribunal de las Ideas</title>
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Georgia, serif;
-      background: #171412;
-      color: #f4eee4;
-    }
-
-    header {
-      padding: 20px;
-      background: #0c0b0a;
-      border-bottom: 1px solid #8c7047;
-      text-align: center;
-    }
-
-    header h1 {
-      color: #d8b77b;
-      margin: 0;
-    }
-
-    header p { color: #c8bba8; }
-
-    main {
-      width: min(1100px, 94%);
-      margin: 35px auto;
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 22px;
-    }
-
-    section {
-      background: #211e1b;
-      border: 1px solid #54442e;
-      border-radius: 10px;
-      padding: 22px;
-    }
-
-    h2 { color: #e2c38b; }
-
-    .etiqueta {
-      color: #c6a66e;
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-
-    .mensaje {
-      padding: 15px;
-      margin: 15px 0;
-      background: #302b26;
-      border-radius: 8px;
-      line-height: 1.6;
-    }
-
-    .defensor { border-left: 3px solid #a58c67; }
-    .opositor { border-left: 3px solid #d8b77b; }
-
-    textarea {
-      width: 100%;
-      min-height: 110px;
-      padding: 14px;
-      background: #100f0e;
-      color: white;
-      border: 1px solid #766344;
-      border-radius: 7px;
-      font: inherit;
-      resize: vertical;
-    }
-
-    button {
-      padding: 12px 18px;
-      background: #c9a66c;
-      color: #17120d;
-      border: 0;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover { background: #e4c58f; }
-
-    .acciones {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-
-    #estado {
-      color: #c6a66e;
-      margin-top: 14px;
-    }
-
-    @media (max-width: 700px) {
-      main { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Tribunal de las Ideas</title>
+<style>
+:root {
+  --fondo: #100f0e;
+  --panel: #1d1a17;
+  --oro: #d5b477;
+  --texto: #f4eee5;
+  --suave: #c1b6a7;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: Georgia, serif;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 7%;
+  border-bottom: 1px solid #55452f;
+  background: #0b0a09;
+  gap: 16px;
+}
+.logo { color: var(--oro); font-size: 20px; }
+header small { color: var(--suave); }
+nav { display: flex; gap: 18px; flex-wrap: wrap; }
+a { color: inherit; text-decoration: none; }
+nav a:hover { color: var(--oro); }
+.hero {
+  text-align: center;
+  padding: 85px 20px 65px;
+  background:
+    linear-gradient(#100f0ed9,#100f0ef5),
+    url("https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1800&q=85")
+    center 45% / cover;
+  border-bottom: 1px solid #55452f;
+}
+.sello { color: var(--oro); font-size: 40px; }
+.etiqueta {
+  color: var(--oro);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+}
+h1 { font-size: clamp(34px, 6vw, 62px); margin: 18px 0; }
+.hero p { color: var(--suave); line-height: 1.8; }
+button {
+  background: var(--oro);
+  color: #17120b;
+  border: 1px solid var(--oro);
+  border-radius: 4px;
+  padding: 13px 19px;
+  font: bold 14px Georgia, serif;
+  cursor: pointer;
+}
+button:hover { background: #f0d5a1; }
+.secundario {
+  background: transparent;
+  color: var(--oro);
+}
+.contenedor { max-width: 1100px; margin: auto; padding: 45px 22px; }
+.titulo {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+h2 { color: var(--oro); font-size: 27px; }
+.casos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 18px;
+}
+.caso {
+  border: 1px solid #4d3f2d;
+  background: var(--panel);
+  padding: 23px;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  min-height: 265px;
+}
+.caso h3 { font-size: 22px; line-height: 1.4; }
+.caso p { color: var(--suave); line-height: 1.7; flex: 1; }
+.caso button { width: 100%; }
+.numero { color: var(--oro); font-size: 12px; }
+.como {
+  border-top: 1px solid #4d3f2d;
+  border-bottom: 1px solid #4d3f2d;
+  background: #171411;
+}
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 22px;
+}
+.paso { padding: 12px 0; }
+.paso strong { color: var(--oro); }
+.paso p { color: var(--suave); line-height: 1.7; }
+footer {
+  padding: 30px 20px;
+  text-align: center;
+  color: var(--suave);
+  font-size: 13px;
+}
+#debate {
+  display: none;
+  max-width: 760px;
+  margin: 25px auto;
+  padding: 25px;
+  background: var(--panel);
+  border: 1px solid #665237;
+  border-radius: 8px;
+}
+#debate select, #debate textarea {
+  width: 100%;
+  margin: 10px 0 18px;
+  padding: 12px;
+  background: #100f0e;
+  border: 1px solid #665237;
+  color: white;
+  font: inherit;
+}
+#debate textarea { min-height: 110px; }
+#resultado { line-height: 1.7; overflow-wrap: anywhere; }
+@media(max-width:750px) {
+  header { align-items: flex-start; flex-direction: column; }
+  .casos, .pasos { grid-template-columns: 1fr; }
+  .hero { padding: 60px 18px; }
+  .caso { min-height: 220px; }
+}
+</style>
 </head>
-
 <body>
-  <header>
-    <h1>⚖ El Tribunal de las Ideas</h1>
-    <p>Donde las ideas se enfrentan</p>
-  </header>
 
-  <main>
-    <section>
-      <span class="etiqueta">TU PAPEL</span>
-      <h2>Opositor</h2>
-      <p>Cuestiona, analiza y refuta.</p>
-      <p>
-        Tu misión es examinar los argumentos del defensor
-        y demostrar que la moral puede existir sin depender
-        necesariamente de Dios.
-      </p>
-      <hr>
-      <h3>Reglas del debate</h3>
-      <p>• Respeta las ideas contrarias.</p>
-      <p>• Argumenta con razones.</p>
-      <p>• Puedes cuestionar cualquier afirmación.</p>
-      <p>• Puedes cambiar de opinión.</p>
-    </section>
+<header>
+  <div>
+    <div class="logo">⚖ EL TRIBUNAL DE LAS IDEAS</div>
+    <small>Donde las ideas se enfrentan</small>
+  </div>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#casos">Casos</a>
+    <a href="#como">Cómo funciona</a>
+  </nav>
+</header>
 
-    <section>
-      <span class="etiqueta">EXPEDIENTE N.º 001</span>
-      <h2>¿La moral necesita a Dios?</h2>
-      <p>
-        ¿Podemos distinguir el bien del mal sin recurrir
-        a la religión?
-      </p>
+<section class="hero" id="inicio">
+  <div class="sello">⚖</div>
+  <div class="etiqueta">El conocimiento entra en juicio</div>
+  <h1>Que hablen las ideas.<br>Que respondan los argumentos.</h1>
+  <p>
+    Un tribunal donde ninguna creencia está exenta de preguntas<br>
+    y ninguna conclusión está por encima del pensamiento crítico.
+  </p>
+  <a href="#casos"><button>Explorar casos abiertos →</button></a>
+</section>
 
-      <div id="conversacion" aria-live="polite">
-        <div class="mensaje defensor">
-          <strong>Defensor de la idea</strong>
-          <p>
-            La moral necesita a Dios porque, sin una autoridad
-            superior, ¿qué fundamento objetivo tenemos para
-            distinguir el bien del mal?
-          </p>
-        </div>
+<main>
+<section class="contenedor" id="casos">
+  <div class="titulo">
+    <div>
+      <div class="etiqueta">Expedientes abiertos</div>
+      <h2>Elige qué idea quieres poner a prueba</h2>
+    </div>
+    <span style="color:#c1b6a7">Tu juicio comienza aquí.</span>
+  </div>
+
+  <div class="casos">
+    <article class="caso">
+      <span class="numero">EXPEDIENTE N.º 001 · FILOSOFÍA</span>
+      <h3>¿La moral necesita a Dios?</h3>
+      <p>¿Podemos distinguir el bien del mal sin recurrir a una autoridad divina?</p>
+      <button onclick="abrir(0)">Entrar al debate →</button>
+    </article>
+    <article class="caso">
+      <span class="numero">EXPEDIENTE N.º 002 · LIBERTAD</span>
+      <h3>¿Somos realmente libres?</h3>
+      <p>¿Elegimos nuestro destino o nuestras decisiones están condicionadas?</p>
+      <button onclick="abrir(1)">Entrar al debate →</button>
+    </article>
+    <article class="caso">
+      <span class="numero">EXPEDIENTE N.º 003 · SOCIEDAD</span>
+      <h3>¿Debe existir la censura?</h3>
+      <p>¿Hay ideas que deben prohibirse o la libertad de expresión debe prevalecer?</p>
+      <button onclick="abrir(2)">Entrar al debate →</button>
+    </article>
+  </div>
+
+  <section id="debate">
+    <div class="etiqueta" id="expediente"></div>
+    <h2 id="pregunta"></h2>
+    <p id="descripcion" style="color:#c1b6a7"></p>
+    <label for="rol">Elige tu papel en el juicio</label>
+    <select id="rol">
+      <option value="Opositor">Opositor: cuestiona la idea</option>
+      <option value="Defensor">Defensor: sostiene la idea</option>
+      <option value="Jurado">Jurado: examina ambos argumentos</option>
+    </select>
+    <label for="argumento">Tu primera intervención</label>
+    <textarea id="argumento" placeholder="Expón tus razones, plantea una objeción o formula una pregunta..."></textarea>
+    <button onclick="enviar()">Presentar intervención</button>
+    <button class="secundario" onclick="cerrar()">Cerrar expediente</button>
+    <div id="resultado"></div>
+  </section>
+</section>
+
+<section class="como" id="como">
+  <div class="contenedor">
+    <div class="etiqueta">El procedimiento</div>
+    <h2>¿Cómo funciona el tribunal?</h2>
+    <div class="pasos">
+      <div class="paso">
+        <strong>01 — Abre el expediente</strong>
+        <p>Escoge una pregunta que desafíe tus convicciones y despierte tu curiosidad.</p>
       </div>
-
-      <label for="respuesta">
-        <strong>Tu turno: presenta tu contraargumento</strong>
-      </label>
-      <br><br>
-
-      <textarea id="respuesta"
-        placeholder="Escribe tu argumento o formula una pregunta..."></textarea>
-
-      <div class="acciones">
-        <button id="enviar">Presentar argumento</button>
-        <button id="pregunta" type="button">Hacer una pregunta</button>
+      <div class="paso">
+        <strong>02 — Asume un papel</strong>
+        <p>Defiende una postura, cuestiona sus fundamentos o evalúa las razones de ambas partes.</p>
       </div>
+      <div class="paso">
+        <strong>03 — Examina las pruebas</strong>
+        <p>Contrasta argumentos, consulta fuentes y construye una conclusión razonada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
 
-      <p id="estado" role="status">
-        El debate está abierto. Esperamos tu intervención.
-      </p>
-    </section>
-  </main>
+<footer>
+  EL TRIBUNAL DE LAS IDEAS · Pensar es atreverse a preguntar.
+</footer>
 
-  <script>
-    const respuesta = document.getElementById("respuesta");
-    const conversacion = document.getElementById("conversacion");
-    const estado = document.getElementById("estado");
+<script>
+const casos = [
+  {
+    n: "EXPEDIENTE N.º 001",
+    p: "¿La moral necesita a Dios?",
+    d: "Defensor: sin Dios no existe un fundamento absoluto para distinguir el bien del mal. ¿Qué responderás?"
+  },
+  {
+    n: "EXPEDIENTE N.º 002",
+    p: "¿Somos realmente libres?",
+    d: "Defensor: nuestras decisiones están condicionadas por la biología, la sociedad y nuestra historia. ¿Somos libres?"
+  },
+  {
+    n: "EXPEDIENTE N.º 003",
+    p: "¿Debe existir la censura?",
+    d: "Defensor: algunas expresiones pueden causar daños graves. ¿Hay límites legítimos a la libertad de expresión?"
+  }
+];
+let actual = 0;
 
-    function intervenir(tipo) {
-      const texto = respuesta.value.trim();
-
-      if (!texto) {
-        estado.textContent = "Escribe tu intervención antes de continuar.";
-        respuesta.focus();
-        return;
-      }
-
-      const mensaje = document.createElement("div");
-      mensaje.className = "mensaje opositor";
-
-      const autor = document.createElement("strong");
-      autor.textContent = tipo === "pregunta"
-        ? "Opositor — pregunta"
-        : "Opositor — argumento";
-
-      const contenido = document.createElement("p");
-      contenido.textContent = texto;
-
-      mensaje.append(autor, contenido);
-      conversacion.appendChild(mensaje);
-
-      respuesta.value = "";
-      estado.textContent =
-        "Tu intervención ha sido añadida al debate de esta sesión.";
-
-      respuesta.focus();
-    }
-
-    document.getElementById("enviar").addEventListener(
-      "click", () => intervenir("argumento")
-    );
-
-    document.getElementById("pregunta").addEventListener(
-      "click", () => intervenir("pregunta")
-    );
-  </script>
+function abrir(i) {
+  actual = i;
+  document.getElementById("expediente").textContent = casos[i].n;
+  document.getElementById("pregunta").textContent = casos[i].p;
+  document.getElementById("descripcion").textContent = casos[i].d;
+  document.getElementById("resultado").textContent = "";
+  document.getElementById("argumento").value = "";
+  document.getElementById("debate").style.display = "block";
+  document.getElementById("debate").scrollIntoView({behavior:"smooth"});
+}
+function enviar() {
+  const texto = document.getElementById("argumento").value.trim();
+  const rol = document.getElementById("rol").value;
+  if (!texto) {
+    alert("Escribe una intervención antes de continuar.");
+    return;
+  }
+  const bloque = document.createElement("div");
+  bloque.style.cssText = "margin-top:20px;padding:15px;border-left:3px solid #d5b477;background:#100f0e";
+  const titulo = document.createElement("strong");
+  titulo.textContent = rol + " — tu intervención";
+  const contenido = document.createElement("p");
+  contenido.textContent = texto;
+  bloque.append(titulo, contenido);
+  document.getElementById("resultado").append(bloque);
+  document.getElementById("argumento").value = "";
+}
+function cerrar() {
+  document.getElementById("debate").style.display = "none";
+  document.getElementById("casos").scrollIntoView({behavior:"smooth"});
+}
+</script>
 </body>
 </html>
-```
